@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset = "UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分类管理</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/index.css" th:href="@{/css/index.css}">
+</head>
+<body>
+
+    <!--导航-->
+    <nav th:replace="_fragments :: menu(2)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu">
+                <h2 class="ui teal header item">IMLMT</h2>
+                <a href="javascript:;" class="m-item item m-mobile-hidden"><i class="home icon"></i>首页</a>
+                <a href="javascript:;" class="active m-item item m-mobile-hidden"><i class="idea icon"></i>分类</a>
+                <a href="javascript:;" class="m-item item m-mobile-hidden"><i class="tags icon"></i>标签</a>
+                <a href="javascript:;" class="m-item item m-mobile-hidden"><i class="clone icon"></i>归档</a>
+                <a href="javascript:;" class="m-item item m-mobile-hidden"><i class="info icon"></i>关于我</a>
+                <div class="right item">
+                    <div class="ui icon inverted transparent input">
+                        <input type="text" placeholder="Search...">
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a id="menu_toggle" href="#"
+           class="ui black icon button m-top-right m-mobile-show">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+
+    <!--中间内容-->
+    <div class="m-padded-tb-large m-margin-top">
+        <div class="ui m-container container">
+            <!--头部-->
+            <div class="ui top attached segment">
+                <div class="ui middle aligned two column grid">
+                    <div class="column">
+                        <h2 class="ui teal header">博客</h2>
+                    </div>
+                    <div class="right aligned column">
+                        共 <h2 class="ui orange header m-inline-block">14</h2> 篇
+                    </div>
+                </div>
+            </div>
+
+            <!--分类列表-->
+            <div class="ui attached bottom segment m-padded-tb-large">
+                <div class="ui labeled button m-margin-tb-tiny">
+                    <a href="javascript:;" class="ui basic teal button"><i class="fork icon"></i>
+                        思考与感悟</a>
+                    <div class="ui basic left pointing teal label">1,048</div>
+                </div>
+                <div class="ui labeled button m-margin-tb-tiny">
+                    <a href="javascript:;" class="ui basic button"><i class="fork icon"></i>
+                        开发者手册</a>
+                    <div class="ui basic left pointing label">1,048</div>
+                </div>
+                <div class="ui labeled button m-margin-tb-tiny">
+                    <a href="javascript:;" class="ui basic button"><i class="fork icon"></i>
+                        清单</a>
+                    <div class="ui basic left pointing label">1,048</div>
+                </div>
+                <div class="ui labeled button m-margin-tb-tiny">
+                    <a href="javascript:;" class="ui basic button"><i class="fork icon"></i>
+                        开发者手册</a>
+                    <div class="ui basic left pointing label">1,048</div>
+                </div>
+                <div class="ui labeled button m-margin-tb-tiny">
+                    <a href="javascript:;" class="ui basic button"><i class="fork icon"></i>
+                        开发者手册</a>
+                    <div class="ui basic left pointing label">1,048</div>
+                </div>
+            </div>
+
+            <!--内容-->
+            <div class="ui top attached teal segment">
+                <div class="ui padded vertical segment m-mobile-padded-clear">
+                    <div class="ui mobile reversed stackable grid">
+                        <!--左部-->
+                        <div class="eleven wide column">
+                            <h3 class="ui header">你真的理解什么是财务自由吗？</h3>
+                            <p class="m-text">正确做好任何一件事情的前提是清晰、正确的理解目标。而事实是，我们很多人很多时候根本没有对目标正确的定义，甚至根本从来就没有想过，只是打击都这么做而已</p>
+                            <div class="ui stackable grid">
+                                <div class="eleven wide column">
+                                    <div class="ui horizontal link list">
+                                        <div class="item">
+                                            <img src="../static/images/占位图片.png" alt=""
+                                                 class="ui avatar image" th:src="@{/images/占位图片.png}"
+                                                 style="height: 30px;width: 30px">
+                                            <div class="content"><a href="javascript:;" class="header">LMT
+                                            </a></div>
+                                        </div>
+                                        <div class="item">
+                                            <i class="calendar icon"></i> 2020-5-20
+                                        </div>
+                                        <div class="item">
+                                            <i class="eye icon"></i> 520
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="right aligned five wide column">
+                                    <a href="javascript:;" target="_blank"
+                                       class="ui teal basic label m-padded-tiny m-text-thin">认知升级</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--右部-->
+                        <div class="five wide column">
+                            <a href="javascript:;" target="_blank">
+                                <img src="../static/images/占位图片.png" alt=""
+                                     class="ui rounded image" th:src="@{/images/占位图片.png}">
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="ui padded vertical segment m-mobile-padded-clear">
+                    <div class="ui mobile reversed stackable grid">
+                        <!--左部-->
+                        <div class="eleven wide column">
+                            <h3 class="ui header">你真的理解什么是财务自由吗？</h3>
+                            <p class="m-text">正确做好任何一件事情的前提是清晰、正确的理解目标。而事实是，我们很多人很多时候根本没有对目标正确的定义，甚至根本从来就没有想过，只是打击都这么做而已</p>
+                            <div class="ui stackable grid">
+                                <div class="eleven wide column">
+                                    <div class="ui horizontal link list">
+                                        <div class="item">
+                                            <img src="../static/images/占位图片.png" alt="" class="ui avatar image"
+                                                 style="height: 30px;width: 30px">
+                                            <div class="content"><a href="javascript:;" class="header">LMT
+                                            </a></div>
+                                        </div>
+                                        <div class="item">
+                                            <i class="calendar icon"></i> 2020-5-20
+                                        </div>
+                                        <div class="item">
+                                            <i class="eye icon"></i> 520
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="right aligned five wide column">
+                                    <a href="javascript:;" target="_blank"
+                                       class="ui teal basic label m-padded-tiny m-text-thin">认知升级</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--右部-->
+                        <div class="five wide column">
+                            <a href="javascript:;" target="_blank">
+                                <img src="../static/images/占位图片.png" alt=""
+                                     class="ui rounded image">
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="ui padded vertical segment m-mobile-padded-clear">
+                    <div class="ui mobile reversed stackable grid">
+                        <!--左部-->
+                        <div class="eleven wide column">
+                            <h3 class="ui header">你真的理解什么是财务自由吗？</h3>
+                            <p class="m-text">正确做好任何一件事情的前提是清晰、正确的理解目标。而事实是，我们很多人很多时候根本没有对目标正确的定义，甚至根本从来就没有想过，只是打击都这么做而已</p>
+                            <div class="ui stackable grid">
+                                <div class="eleven wide column">
+                                    <div class="ui horizontal link list">
+                                        <div class="item">
+                                            <img src="../static/images/占位图片.png" alt="" class="ui avatar image"
+                                                 style="height: 30px;width: 30px">
+                                            <div class="content"><a href="javascript:;" class="header">LMT
+                                            </a></div>
+                                        </div>
+                                        <div class="item">
+                                            <i class="calendar icon"></i> 2020-5-20
+                                        </div>
+                                        <div class="item">
+                                            <i class="eye icon"></i> 520
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="right aligned five wide column">
+                                    <a href="javascript:;" target="_blank"
+                                       class="ui teal basic label m-padded-tiny m-text-thin">认知升级</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--右部-->
+                        <div class="five wide column">
+                            <a href="javascript:;" target="_blank">
+                                <img src="../static/images/占位图片.png" alt=""
+                                     class="ui rounded image">
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="ui padded vertical segment m-mobile-padded-clear">
+                    <div class="ui mobile reversed stackable grid">
+                        <!--左部-->
+                        <div class="eleven wide column">
+                            <h3 class="ui header">你真的理解什么是财务自由吗？</h3>
+                            <p class="m-text">正确做好任何一件事情的前提是清晰、正确的理解目标。而事实是，我们很多人很多时候根本没有对目标正确的定义，甚至根本从来就没有想过，只是打击都这么做而已</p>
+                            <div class="ui stackable grid">
+                                <div class="eleven wide column">
+                                    <div class="ui horizontal link list">
+                                        <div class="item">
+                                            <img src="../static/images/占位图片.png" alt="" class="ui avatar image"
+                                                 style="height: 30px;width: 30px">
+                                            <div class="content"><a href="javascript:;" class="header">LMT
+                                            </a></div>
+                                        </div>
+                                        <div class="item">
+                                            <i class="calendar icon"></i> 2020-5-20
+                                        </div>
+                                        <div class="item">
+                                            <i class="eye icon"></i> 520
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="right aligned five wide column">
+                                    <a href="javascript:;" target="_blank"
+                                       class="ui teal basic label m-padded-tiny m-text-thin">认知升级</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--右部-->
+                        <div class="five wide column">
+                            <a href="javascript:;" target="_blank">
+                                <img src="../static/images/占位图片.png" alt=""
+                                     class="ui rounded image">
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="ui padded vertical segment m-mobile-padded-clear">
+                    <div class="ui mobile reversed stackable grid">
+                        <!--左部-->
+                        <div class="eleven wide column">
+                            <h3 class="ui header">你真的理解什么是财务自由吗？</h3>
+                            <p class="m-text">正确做好任何一件事情的前提是清晰、正确的理解目标。而事实是，我们很多人很多时候根本没有对目标正确的定义，甚至根本从来就没有想过，只是打击都这么做而已</p>
+                            <div class="ui stackable grid">
+                                <div class="eleven wide column">
+                                    <div class="ui horizontal link list">
+                                        <div class="item">
+                                            <img src="../static/images/占位图片.png" alt="" class="ui avatar image"
+                                                 style="height: 30px;width: 30px">
+                                            <div class="content"><a href="javascript:;" class="header">LMT
+                                            </a></div>
+                                        </div>
+                                        <div class="item">
+                                            <i class="calendar icon"></i> 2020-5-20
+                                        </div>
+                                        <div class="item">
+                                            <i class="eye icon"></i> 520
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="right aligned five wide column">
+                                    <a href="javascript:;" target="_blank"
+                                       class="ui teal basic label m-padded-tiny m-text-thin">认知升级</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--右部-->
+                        <div class="five wide column">
+                            <a href="javascript:;" target="_blank">
+                                <img src="../static/images/占位图片.png" alt=""
+                                     class="ui rounded image">
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="ui padded vertical segment m-mobile-padded-clear">
+                    <div class="ui mobile reversed stackable grid">
+                        <!--左部-->
+                        <div class="eleven wide column">
+                            <h3 class="ui header">你真的理解什么是财务自由吗？</h3>
+                            <p class="m-text">正确做好任何一件事情的前提是清晰、正确的理解目标。而事实是，我们很多人很多时候根本没有对目标正确的定义，甚至根本从来就没有想过，只是打击都这么做而已</p>
+                            <div class="ui stackable grid">
+                                <div class="eleven wide column">
+                                    <div class="ui horizontal link list">
+                                        <div class="item">
+                                            <img src="../static/images/占位图片.png" alt="" class="ui avatar image"
+                                                 style="height: 30px;width: 30px">
+                                            <div class="content"><a href="javascript:;" class="header">LMT
+                                            </a></div>
+                                        </div>
+                                        <div class="item">
+                                            <i class="calendar icon"></i> 2020-5-20
+                                        </div>
+                                        <div class="item">
+                                            <i class="eye icon"></i> 520
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="right aligned five wide column">
+                                    <a href="javascript:;" target="_blank"
+                                       class="ui teal basic label m-padded-tiny m-text-thin">认知升级</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--右部-->
+                        <div class="five wide column">
+                            <a href="javascript:;" target="_blank">
+                                <img src="../static/images/占位图片.png" alt=""
+                                     class="ui rounded image">
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!--底部，翻页按钮-->
+            <div class="ui bottom attached segment">
+                <div class="ui middle aligned two column grid">
+                    <div class="column">
+                        <a href="javascript:;" class="ui teal basic button">上一页</a>
+                    </div>
+                    <div class="right aligned column">
+                        <a href="javascript:;" class="ui teal basic button">下一页</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--底部footer-->
+    <footer th:replace="admin/_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided stackable grid">
+                <div class="three wide column">
+                    <h4 class="ui inverted header m-opacity-mini">关注</h4>
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img src="../static/images/credit.png" th:src="@{/images/credit.png}"
+                                 class="ui rounded image" style="width: 50%">
+                        </div>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header m-opacity-mini">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a href="javascript:;" class ="item">用户故事 (User Story)</a>
+                        <a href="javascript:;" class ="item">用户故事 (User Story)</a>
+                        <a href="javascript:;" class ="item">用户故事 (User Story)</a>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header m-opacity-mini">联系我</h4>
+                    <div class="ui inverted link list">
+                        <a href="javascript:;" class ="item">Email:1278492204@qq.com</a>
+                        <a href="javascript:;" class ="item">QQ:1278492204</a>
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui inverted header m-opacity-mini">BLOG</h4>
+                    <p class="m-opacity-mini">这是我的个人博客，会分享关于编程、写作、思考相关的内容，希望可以给来到这里的人有所帮助</p>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2019-2020 IMLMT
+                Designed by LMT</p>
+        </div>
+    </footer>
+
+    <!--/*/<th:block th:replace="_fragments :: script">/*/-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
+<script>
+    $("#menu_toggle").click(function () {
+        $(".m-item").toggleClass('m-mobile-hidden');
+    });
+
+</script>
+</body>
+</html>

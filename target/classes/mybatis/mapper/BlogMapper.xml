@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.imlmt.blog.mapper.BlogMapper">
+    <!--property对应java属性名
+        column对应数据库列名
+    -->
+    <resultMap id="fullBlogMap" type="cn.imlmt.blog.entities.Blog">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="firstPicture" column="first_picture"/>
+        <result property="flag" column="flag"/>
+        <result property="views" column="views"/>
+        <result property="appreciation" column="appreciation"/>
+        <result property="shareStatement" column="share_statement"/>
+        <result property="commentabled" column="commentabled"/>
+        <result property="published" column="published"/>
+        <result property="recommend" column="recommend"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="description" column="description"/>
+        <result property="typeId" column="type_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="tagIds" column="tag_ids"/>
+        <association property="type" column="typeId" javaType="cn.imlmt.blog.entities.Type">
+            <id property="id" column="typeid"/>
+            <result property="name" column="typename"/>
+        </association>
+        <association property="user" column="userId" javaType="cn.imlmt.blog.entities.User">
+            <id property="id" column="uid"/>
+            <result property="nickname" column="nickname"/>
+            <result property="username" column="username"/>
+            <result property="email" column="email"/>
+            <result property="avatar" column="avatar"/>
+        </association>
+    </resultMap>
+
+
+    <select id="getBlogById" resultMap="fullBlogMap">
+        select blog.*, user.id as uid,user.nickname,user.username,user.email,user.avatar,type.id as
+        typeid,type.name as typename
+        from t_blog blog, t_user user, t_type type
+        where blog.id = #{id}
+    </select>
+
+    <!--新增博客,并获取主键-->
+    <insert id="saveBlog" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into t_blog
+        (title,content,first_picture,flag,views,appreciation,share_statement,commentabled,
+        published,recommend,create_time,update_time,description,type_id,user_id,tag_ids)
+        values
+        (#{title},#{content},#{firstPicture},#{flag},#{views},#{appreciation},#{shareStatement},
+        #{commentabled},#{published},#{recommend},#{createTime},#{updateTime},#{description},#{typeId},#{userId},#{tagIds})
+        <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+            <![CDATA[
+           SELECT LAST_INSERT_ID() AS id
+           ]]>
+        </selectKey>
+    </insert>
+
+    <!--更新博客-->
+    <update id="updateBlog" parameterType="cn.imlmt.blog.entities.Blog">
+        update t_blog set
+        title=#{title},content=#{content},first_picture=#{firstPicture},flag=#{flag},views=#{views},
+        appreciation=#{appreciation},share_statement=#{shareStatement},commentabled=#{commentabled},
+        published=#{published},recommend=#{recommend},create_time=#{createTime},update_time=#{updateTime},
+        description=#{description},type_id=#{typeId},user_id=#{userId},tag_ids=#{tagIds}
+        where id=#{id}
+    </update>
+
+    <delete id="deleteBlogById">
+        delete from t_blog where id = #{id}
+    </delete>
+
+<!--======================================================================================-->
+
+    <!--展示博客列表(无条件) 匹配-->
+    <resultMap id="blogListMap" type="cn.imlmt.blog.queryvo.BlogListBean">
+        <id property="id" column="id"></id>
+        <result property="title" column="title"></result>
+        <result property="typeId" column="typeId"></result>
+        <result property="recommend" column="recommend"></result>
+        <result property="published" column="published"></result>
+        <result property="updateTime" column="update_time"></result>
+        <!--Type-->
+        <association property="type" column="typeId"
+                     javaType="cn.imlmt.blog.entities.Type">
+            <id property="id" column="typeid"></id>
+            <result property="name" column="typeName"></result>
+        </association>
+    </resultMap>
+
+    <!--后台博客列表(无条件)-->
+    <select id="getBlogList" resultMap="blogListMap">
+        select blog.id, blog.title, blog.type_id, blog.recommend, blog.update_time,
+        blog.published, type.id as typeid, type.name as typeName
+        from t_blog blog,t_type type
+        where blog.type_id = type.id
+    </select>
+
+    <!--后台博客列表(有条件)-->
+    <select id="getBlogListWithReq" resultMap="blogListMap" parameterType="cn.imlmt.blog.queryvo.BlogQuery">
+        select blog.id, blog.title, blog.type_id, blog.recommend, blog.update_time,
+        blog.published, type.id as
+        typeid, type.name as typeName
+        from t_blog blog,t_type type
+        where
+        <if test="1 == 1"> blog.type_id = type.id </if>
+        <if test="typeId != null and typeId != 0"> and blog.type_id = #{typeId}</if>
+        <if test="title != null"> and blog.title like CONCAT(CONCAT('%', #{title}), '%')</if>
+        <if test="recommend != false"> and blog.recommend = 1 </if>
+        <if test="published != false"> and blog.published = 1 </if>
+    </select>
+
+<!--======================================================================================-->
+
+    <!--博客推荐列表-->
+    <select id="getRecommendBlogList" resultType="cn.imlmt.blog.queryvo.BlogListBean">
+        select id,title from t_blog where recommend=1 order by update_time desc limit #{size}
+    </select>
+
+    <!---->
+    <resultMap id="blogShowListMap" type="cn.imlmt.blog.queryvo.BlogShowBean">
+        <id property="id" column="id"></id>
+        <result property="title" column="title"></result>
+        <result property="views" column="views"></result>
+        <result property="description" column="description"></result>
+        <result property="firstPicture" column="first_picture"></result>
+        <result property="updateTime" column="update_time"></result>
+        <result property="userId" column="userId"></result>
+        <result property="typeId" column="typeId"></result>
+
+        <association property="user" column="userId" javaType="cn.imlmt.blog.entities.User">
+            <id property="id" column="uid"/>
+            <result property="nickname" column="nickname"/>
+            <result property="username" column="username"/>
+            <result property="email" column="email"/>
+            <result property="avatar" column="avatar"/>
+        </association>
+        <association property="type" column="typeId"
+                     javaType="cn.imlmt.blog.entities.Type">
+            <id property="id" column="typeid"></id>
+            <result property="name" column="typeName"></result>
+        </association>
+    </resultMap>
+
+    <!--前台最新博客列表-->
+    <select id="getLatestBlogList" resultMap="blogShowListMap">
+        select blog.id,blog.title,blog.views,blog.description,blog.first_picture,blog
+        .update_time,blog.user_id,blog.type_id,u.id as uid,u.nickname,u.username,u.email,u.avatar,
+        type.id as typeid,type.name as typeName
+        from t_blog blog ,t_user u,t_type type
+        where blog.user_id = u.id and blog.type_id = type.id
+    </select>
+
+    <!--前台搜索博客列表-->
+    <select id="getSearchBlogList" resultMap="blogShowListMap">
+        select blog.id,blog.title,blog.views,blog.description,blog.first_picture,blog
+        .update_time,blog.user_id,blog.type_id,u.id as uid,u.nickname,u.username,u.email,u.avatar,
+        type.id as typeid,type.name as typeName
+        from t_blog blog ,t_user u,t_type type
+        where blog.user_id = u.id
+        and blog.type_id = type.id
+        and (blog.title like CONCAT(CONCAT('%', #{query}), '%')
+        or blog.content like CONCAT(CONCAT('%', #{query}), '%')
+        or blog.description like CONCAT(CONCAT('%', #{query}), '%'))
+    </select>
+
+    <update id="addBlogViews">
+        update t_blog set views=views+1 where id = #{id}
+    </update>
+
+</mapper>

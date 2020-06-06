@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.imlmt.blog.mapper.TypeMapper">
+    <insert id="saveType">
+        INSERT INTO t_type(id,name,amount) VALUES (#{id},#{name},#{amount})
+    </insert>
+    
+    <select id="getTypeById" resultType="cn.imlmt.blog.entities.Type">
+        select * from t_type where id=#{id}
+    </select>
+
+    <select id="getTypeByName" resultType="cn.imlmt.blog.entities.Type">
+        select * from t_type where name=#{name}
+    </select>
+    
+    <select id="getAllTypes" resultType="cn.imlmt.blog.entities.Type">
+        select * from t_type
+    </select>
+
+    <update id="updateType" parameterType="cn.imlmt.blog.entities.Type">
+        update t_type set name=#{name},amount=#{amount} where id=#{id}
+    </update>
+
+    <delete id="removeType">
+        delete from t_type where id=#{id}
+    </delete>
+
+    <select id="getHotType" resultType="cn.imlmt.blog.entities.Type">
+        select * from t_type order by amount desc limit #{size};
+    </select>
+
+</mapper>

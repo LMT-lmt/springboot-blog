@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.imlmt.blog.mapper.TagMapper">
+<!--====================== t_tag ============================================-->
+    <insert id="saveTag">
+        INSERT INTO t_tag(id,name,amount) VALUES (#{id},#{name},#{amount})
+    </insert>
+    
+    <select id="getTagById" resultType="cn.imlmt.blog.entities.Tag">
+        select * from t_tag where id=#{id}
+    </select>
+
+    <select id="getTagByName" resultType="cn.imlmt.blog.entities.Tag">
+        select * from t_tag where name=#{name}
+    </select>
+    
+    <select id="getAllTags" resultType="cn.imlmt.blog.entities.Tag">
+        select * from t_tag
+    </select>
+
+    <update id="updateTag" parameterType="cn.imlmt.blog.entities.Tag">
+        update t_tag set name=#{name},amount=#{amount} where id=#{id}
+    </update>
+
+    <delete id="removeTag">
+        delete from t_tag where id=#{id}
+    </delete>
+
+    <select id="getHotTag" resultType="cn.imlmt.blog.entities.Tag">
+        select * from t_tag order by amount desc limit #{size}
+    </select>
+
+<!--====================== t_blog_tags ============================================-->
+
+    <insert id="insertBlogTag">
+        insert into t_blog_tags(blogs_id, tags_id) values (#{blogId},#{tagId})
+    </insert>
+
+    <delete id="removeBlogTag">
+        delete from t_blog_tags where blogs_id=#{blogId} and tags_id=#{tagId}
+    </delete>
+
+    <delete id="removeBlogTagByBlogId">
+        delete from t_blog_tags where blogs_id=#{id}
+    </delete>
+
+</mapper>
